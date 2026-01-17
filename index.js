@@ -6,14 +6,24 @@ const PC_URL = 'https://cedwospxv.localto.net';
 
 const server = http.createServer((req, res) => {
     req.headers['localtonet-skip-warning'] = 'true';
-
+    
     proxy.web(req, res, { 
         target: PC_URL, 
         changeOrigin: true,
+        ws: true,
         headers: { 'localtonet-skip-warning': 'true' }
     }, (e) => {
         res.writeHead(503, { 'Content-Type': 'text/html; charset=utf-8' });
         res.end('<h1 style="text-align:center;">🛠️ Serveur en maintenance</h1>');
+    });
+});
+
+server.on('upgrade', (req, socket, head) => {
+    req.headers['localtonet-skip-warning'] = 'true';
+    proxy.ws(req, socket, head, {
+        target: PC_URL,
+        changeOrigin: true,
+        headers: { 'localtonet-skip-warning': 'true' }
     });
 });
 
