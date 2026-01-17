@@ -1,11 +1,15 @@
 {
-  "name": "relais-chat",
+  "name": "chat-server-cloud",
   "version": "1.0.0",
+  "type": "module",
   "main": "index.js",
-  "dependencies": {
-    "http-proxy": "^1.18.1"
-  },
   "scripts": {
     "start": "node index.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "socket.io": "^4.7.2",
+    "bcrypt": "^5.1.1",
+    "joi": "^17.11.0"
   }
 }
