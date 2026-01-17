@@ -1,7 +1,10 @@
 const http = require('http');
 const httpProxy = require('http-proxy');
 
-const proxy = httpProxy.createProxyServer({});
+const proxy = httpProxy.createProxyServer({
+    secure: false
+});
+
 const PC_URL = 'https://38c68a94430f9df4-128-79-64-107.serveousercontent.com';
 
 const server = http.createServer((req, res) => {
@@ -13,8 +16,9 @@ const server = http.createServer((req, res) => {
         ws: true,
         headers: { 'skip-browser-warning': 'true' }
     }, (e) => {
+        console.error("Erreur Proxy:", e.message);
         res.writeHead(503, { 'Content-Type': 'text/plain; charset=utf-8' });
-        res.end('🛠️ Serveur en maintenance ou lien Serveo expiré');
+        res.end('🛠️ Relais actif mais le PC ne répond pas. Vérifie ton terminal SSH.');
     });
 });
 
@@ -28,4 +32,4 @@ server.on('upgrade', (req, socket, head) => {
 });
 
 const PORT = process.env.PORT || 8080;
-server.listen(PORT, () => console.log(`Bypass Serveo actif sur le port ${PORT}`));
+server.listen(PORT, () => console.log(`Relais démarré sur le port ${PORT}`));
