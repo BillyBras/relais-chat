@@ -5,7 +5,7 @@ const proxy = httpProxy.createProxyServer({
     secure: false
 });
 
-const PC_URL = 'https://38c68a94430f9df4-128-79-64-107.serveousercontent.com';
+const PC_URL = 'Forwarding HTTP traffic from https://dc8eb5128c0554f2-128-79-64-107.serveousercontent.com';
 
 const server = http.createServer((req, res) => {
     req.headers['skip-browser-warning'] = 'true';
