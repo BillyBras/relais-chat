@@ -12,7 +12,7 @@ const io = new Server(httpServer, {
     cors: { origin: "*" } 
 });
 
-const DATA_FILE = './users.json';
+const DATA_FILE = '/tmp/users.json';
 
 const authSchema = Joi.object({
     pseudo: Joi.string().alphanum().min(3).max(15).required(),
