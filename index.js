@@ -11,10 +11,10 @@ const server = http.createServer((req, res) => {
         target: PC_URL, 
         changeOrigin: true,
         ws: true,
-        headers: { 'skip-browser-warning': 'true' } 
+        headers: { 'skip-browser-warning': 'true' }
     }, (e) => {
-        res.writeHead(503);
-        res.end('🛠️ Serveur en maintenance');
+        res.writeHead(503, { 'Content-Type': 'text/plain; charset=utf-8' });
+        res.end('🛠️ Serveur en maintenance ou lien Serveo expiré');
     });
 });
 
@@ -28,4 +28,4 @@ server.on('upgrade', (req, socket, head) => {
 });
 
 const PORT = process.env.PORT || 8080;
-server.listen(PORT);
+server.listen(PORT, () => console.log(`Bypass Serveo actif sur le port ${PORT}`));
