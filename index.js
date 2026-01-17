@@ -2,7 +2,7 @@ const http = require('http');
 const httpProxy = require('http-proxy');
 
 const proxy = httpProxy.createProxyServer({});
-const PC_URL = 'https://cedwospxv.localto.net';
+const PC_URL = 'https://38c68a94430f9df4-128-79-64-107.serveousercontent.com';
 
 const server = http.createServer((req, res) => {
     req.headers['localtonet-skip-warning'] = 'true';
